@@ -1,14 +1,24 @@
 //your JS code here. If required.
-let max = -Infinity, result = -Infinity;
-
-  for (const value of arr) {
-    const nr = Number(value)
-
-    if (nr > max) {
-      [result, max] = [max, nr] // save previous max
-    } else if (nr < max && nr > result) {
-      result = nr; // new second biggest
+function secondHighest(arr) {
+    if (arr.length < 2) {
+        return -Infinity;
     }
-  }
 
-  return result;
+    let max = -Infinity;
+    let secondMax = -Infinity;
+
+    for (let num of arr) {
+        if (num > max) {
+            secondMax = max;
+            max = num;
+        } else if (num > secondMax && num < max) {
+            secondMax = num;
+        }
+    }
+
+    if (secondMax === -Infinity) {
+        return -Infinity;
+    }
+
+    return secondMax;
+}
